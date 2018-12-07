@@ -1,0 +1,17 @@
+<h1>Edit <%= @player.full_name%>'s Profile </h1>
+
+<%= form_for @player do |f| %>
+  <%= f.label :full_name %>
+  <%= f.text_field :full_name %><br>
+  <%= f.label :username %>
+  <%= f.text_field :username %><br>
+  <%= f.label :console_type %>
+  <%= f.select :console_type, ['pc', 'psn', 'xbox']%><br>
+  <%= f.label :email %>
+  <%= f.text_field :email %><br>
+  <%= f.submit%>
+<% end %>
+
+<hr>
+<br>
+<%= link_to '<button type="button">Back</button>'.html_safe, @player %>

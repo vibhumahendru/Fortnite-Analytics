@@ -1,0 +1,21 @@
+<div id="statShowBack">
+
+
+  <% Time.zone = 'Eastern Time (US & Canada)' %>
+  <div class="statBox">
+
+  <h2 class="pink">Stats As Of ---- </h2>
+  <h2 class="pink"><%=@stat.current_time.inspect %> </h2><br>
+
+  <h3><li>Totals Wins: <%=@stat.total_wins%></li></h3>
+  <h3><li>Totals Matches: <%=@stat.total_matches%></li></h3>
+  <h3><li>Totals Kills: <%=@stat.total_kills%></li></h3>
+  <h3><li>Kill/Death Ratio: <%=@stat.kill_death_ratio%></li></h3>
+  <h3><li>Rank: <%=@stat.rank%></li></h3>
+  <br>
+  <br>
+  <%= button_to 'See Trend', stat_compare_path(@stat), class: "btn btn-success"%>
+  <hr>
+  <%= link_to '<button class="btn btn-warning" type="button">Back</button>'.html_safe, @stat.player %>
+  </div>
+</div>

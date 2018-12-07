@@ -1,0 +1,29 @@
+<div id="comparisonBack">
+
+
+  <h1>Analytics for : <%=@player.full_name %> </h1>
+  <br>
+  <% Time.zone = 'Eastern Time (US & Canada)' %>
+  <h3>Change in stats between ---</h3>
+  <h3><%=@stat.current_time.inspect%> and NOW  </h3>
+<br>
+  <h4 class="welcome">Change in Wins: <%=@player.total_wins - @stat.total_wins %>  </h4><br>
+  <h4 class="welcome">Change in Kills: <%=@player.total_kills - @stat.total_kills %>  </h4><br>
+  <h4 class="welcome">Change in Matches: <%=@player.total_matches - @stat.total_matches %>  </h4><br>
+  <h4 class="welcome">Change in KD: <%=(@player.kd_ratio - @stat.kill_death_ratio).round(2) %>  </h4><br>
+
+  <br>
+  <br>
+  <hr>
+  <%= link_to '<button class="btn btn-warning" type="button">Back</button>'.html_safe, @stat %>
+  <br>
+  <br>
+  <% x = @player.total_matches %>
+  <% matchAr = @player.chartAr %>
+  <% matchAr << ["Now", x] %>
+  <% minVal = @player.stats[0].total_matches %>
+  <div id="chart">
+  <h4><%= line_chart matchAr, title: "Change in Matches: #{x - @stat.total_matches}", xtitle: "Time", ytitle: "Wins", width: "600px", height: "300px", min: minVal - 20, max: (x + 20) %></h4>
+  </div>
+
+</div>

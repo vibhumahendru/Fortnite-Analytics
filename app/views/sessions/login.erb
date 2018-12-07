@@ -1,0 +1,28 @@
+
+<div class="layer">
+  </div>
+  <div class="welcomeHead">
+  <h1 id="analytics">Fortnite Analytics</h1>
+</div>
+  <br>
+  <div class="login">
+
+
+  <h3 class="welcome">Login Page</h3>
+
+  <% if flash[:bad_user] %>
+  <li class="welcome"><%= flash[:bad_user] %></li>
+  <% end %>
+
+
+  <%= form_tag authorize_path  do %>
+    <%= label_tag :epic_Username, nil, class: "welcome" %>
+    <%= text_field_tag :username %>
+    <%= submit_tag :login, {:class => "btn btn-primary" }  %>
+  <% end %>
+
+  <hr>
+
+  <h3 class="welcome" >Sign Up</h3>
+  <%= link_to '<button class="btn btn-warning" type="button">New Player</button>'.html_safe, new_player_path%>
+  </div>

@@ -1,0 +1,20 @@
+<div id="comparisonBack">
+
+
+  <h1 class="pink">New Player Form</h1>
+
+  <%= form_for @player do |f| %>
+    <%= f.label :full_name, class: "labelTag" %>
+    <%= f.text_field :full_name %><br><br>
+    <%= f.label :epic_Username, class: "labelTag" %>
+    <%= f.text_field :username %><br><br>
+    <%= f.label :console_type, class: "labelTag" %>
+    <%= f.select :console_type, ['pc', 'psn', 'xbox']%><br><br>
+    <%= f.label :email, class: "labelTag" %>
+    <%= f.text_field :email %><br><br>
+    <%= f.submit "Create Player", class: "btn btn-success"%>
+  <% end %>
+
+
+<%= image_tag("fortnitegif.gif", :alt => "hello", :id => "gif") %>
+</div>

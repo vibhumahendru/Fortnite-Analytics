@@ -1,0 +1,72 @@
+<div id="showBack">
+  <div class="showList">
+
+
+  <h1> <%= @player.full_name %>'s Details </h1>
+  <ul>
+  <h3 class="pink">Username: <%=@player.username %></h3><br>
+  <h3 class="pink">Console Type: <%=@player.console_type %></h3><br>
+  <h3 class="pink">Email: <%=@player.email %></h3><br>
+  </ul>
+  <hr>
+  <%= link_to '<button class="btn btn-warning" type="button">Edit Player</button>'.html_safe, edit_player_path(@player) %>
+  <br>
+  <%= button_to 'Delete Player', @player, method: :delete, data:{confirm: 'You sure mate?'}, class: "btn btn-danger" %>
+
+  <br>
+  <br>
+  <h2 class="pink">Current Stats:</h2>
+  <h3>Totals Wins: <%=@player.total_wins%></h3>
+  <h3>Totals Matches: <%=@player.total_matches%></h3>
+  <h3>Totals Kills: <%=@player.total_kills%></h3>
+  <h3>Kill/Death Ratio: <%=@player.kd_ratio%></h3>
+  <h3>Rank: <%=@player.rank%></h3>
+  <br>
+  <%= button_to 'Save Stats', player_stat_save_path(@player), class: "btn btn-success"%>
+  <br>
+  <%= button_to 'Mail My Stats', player_mail_path(@player), class: "btn btn-success"%>
+  <% if flash[:email] %>
+  <h3><%= flash[:email] %></h3>
+  <% end %>
+  <hr>
+
+
+  <ol>
+    <% if @player.stats.any? %>
+    <% Time.zone = 'Eastern Time (US & Canada)' %>
+    <h2 class="pink">Previously Saved Stats</h2>
+      <%@player.stats.each do |stat|%>
+        <li><%= link_to stat.current_time.inspect, stat %></li>
+        <%= button_to 'Delete Record', stat, method: :delete, data:{confirm: 'You sure mate?'}, class: "btn btn-danger" %>
+
+      <% end %>
+    <% end %>
+  </ol>
+  <hr>
+  <h2 class="pink"> <%= @player.full_name %>'s Followers </h2>
+  <ol>
+    <% @player.followers.each do |follower| %>
+      <li><%=link_to follower.full_name, follower %></li>
+    <% end %>
+  </ol>
+
+  <% if !@player.followers.include?(@session_user) %>
+    <%=button_to 'Follow', player_relate_path(@player), class: "btn btn-primary"%>
+    <% else %>
+    <%=button_to 'Un-follow', player_remove_follower_path(@player), class: "btn btn-primary" %>
+    <% end %>
+
+
+
+
+
+
+
+
+
+  <hr>
+  <br>
+  <%= link_to '<button class="btn btn-info" type="button">All Players</button>'.html_safe, players_path %>
+  </div>
+  <br><br><br>
+</div>
