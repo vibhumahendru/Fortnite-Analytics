@@ -21,8 +21,10 @@ class Player < ApplicationRecord
     if self.username.include?(" ")
       userId = self.username.gsub(/\s/,'%20')
     end
-
+    
     response_string = RestClient.get("https://api.fortnitetracker.com/v1/profile/#{self.console_type}/#{userId}", headers={"TRN-Api-Key": ENV['VM_FT_KEY']})
+    # response_string = RestClient.get("https://api.fortnitetracker.com/v1/profile/pc/Ninja", headers={"TRN-Api-Key": "72b19c7e-860f-41ff-aa37-a28081b99b62"})
+
     response_hash = JSON.parse(response_string)
 
   end
@@ -115,7 +117,8 @@ class Player < ApplicationRecord
   }]
   )
   p variable.attributes['Messages']
-  end
+end
+
 
 end
 
